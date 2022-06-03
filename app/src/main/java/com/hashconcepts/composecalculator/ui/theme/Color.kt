@@ -2,7 +2,16 @@ package com.hashconcepts.composecalculator.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+//Dark
+val DarkBackgroundColor = Color(0xFF111111)
+val DarkSecondaryBackgroundColor = Color(0xFF232323)
+val DarkButtonBackgroundColor = Color(0xFF111111)
+val AccentColor = Color(0xFF0500FF)
+val DarkMainTextColor = Color(0xFFFFFFFF)
+val DarkSecondaryTextColor = Color(0xFFEFEFEF)
+
+//Light
+val LightBackgroundColor = Color(0xFFEAF6F8)
+val LightButtonBackgroundColor = Color(0xFFECECEC)
+val LightMainTextColor = Color(0xFF000000)
+val LightSecondaryTextColor = Color(0xFF070707)
