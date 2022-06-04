@@ -2,6 +2,7 @@ package com.hashconcepts.composecalculator.ui.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,6 +30,7 @@ fun CalculatorInputItem(
             .size(60.dp)
             .clip(CircleShape)
             .background(MaterialTheme.colors.surface)
+            .clickable(onClick = onClick)
     ) {
         Text(
             text = text,
