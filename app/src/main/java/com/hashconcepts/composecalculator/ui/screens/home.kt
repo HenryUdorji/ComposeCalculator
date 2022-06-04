@@ -1,6 +1,7 @@
 package com.hashconcepts.composecalculator.ui.screens
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -14,11 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.hashconcepts.composecalculator.R
+import com.hashconcepts.composecalculator.ui.*
 import com.hashconcepts.composecalculator.ui.components.CalculatorInputItem
 import com.hashconcepts.composecalculator.ui.theme.ComposeCalculatorTheme
 import com.hashconcepts.composecalculator.ui.theme.DarkSecondaryBackgroundColor
@@ -106,11 +110,6 @@ fun ColumnScope.CalculatorInputSection() {
 
 @Composable
 fun ColumnScope.CalculatorInputItemSection() {
-    val firstRow = listOf("c", "+/-", "%", "/")
-    val secondRow = listOf("c", "+/-", "%", "/")
-    val thirdRow = listOf("c", "+/-", "%", "/")
-    val fourthRow = listOf("c", "+/-", "%", "/")
-    val fifthRow = listOf("c", "+/-", "%", "/")
     Column(
         verticalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
@@ -126,14 +125,15 @@ fun ColumnScope.CalculatorInputItemSection() {
 }
 
 @Composable
-fun InputRows(rowItems: List<String>) {
+fun InputRows(rowItems: List<CalculatorInputItemData>) {
+    val context = LocalContext.current
     LazyRow(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier.fillMaxWidth(),
         content = {
             itemsIndexed(rowItems) { _, item ->
-                CalculatorInputItem(text = item) {
-                    //Todo ->
+                CalculatorInputItem(calculatorInputData = item) {
+                    Toast.makeText(context, item.symbol, Toast.LENGTH_SHORT).show()
                 }
             }
         })
