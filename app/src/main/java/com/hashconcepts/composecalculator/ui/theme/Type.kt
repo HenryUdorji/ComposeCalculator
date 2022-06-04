@@ -20,7 +20,7 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = allRoundGothic,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 35.sp,
     ),
     h1 = TextStyle(
         fontFamily = allRoundGothic,

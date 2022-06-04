@@ -1,25 +1,29 @@
 package com.hashconcepts.composecalculator.ui.screens
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.hashconcepts.composecalculator.ui.components.CalculatorInputItem
 import com.hashconcepts.composecalculator.ui.theme.ComposeCalculatorTheme
 import com.hashconcepts.composecalculator.ui.theme.DarkSecondaryBackgroundColor
+import com.hashconcepts.composecalculator.ui.theme.LightMainTextColor
+import com.hashconcepts.composecalculator.ui.theme.SwitchTrackColor
 
 /**
  * @created 03/06/2022 - 9:47 PM
@@ -57,7 +61,7 @@ fun CalculatorOutputSection() {
         horizontalAlignment = Alignment.End,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 35.dp, bottom = 20.dp, end = 25.dp)
+            .padding(top = 35.dp, bottom = 30.dp, end = 25.dp)
     ) {
         Text(
             text = "34+4/8*5",
@@ -83,8 +87,56 @@ fun ColumnScope.CalculatorInputSection() {
             .clip(RoundedCornerShape(topStart = 100.dp, topEnd = 100.dp))
             .background(if (isSystemInDarkTheme()) DarkSecondaryBackgroundColor else Color.White)
     ) {
-
+        Switch(
+            modifier = Modifier
+                .padding(start = 20.dp, top = 20.dp)
+                .scale(2f)
+                .size(100.dp),
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = LightMainTextColor,
+                checkedTrackColor = SwitchTrackColor
+            ),
+            checked = true,
+            onCheckedChange = {
+                //Todo -> Toggle mode
+            })
+        CalculatorInputItemSection()
     }
+}
+
+@Composable
+fun ColumnScope.CalculatorInputItemSection() {
+    val firstRow = listOf("c", "+/-", "%", "/")
+    val secondRow = listOf("c", "+/-", "%", "/")
+    val thirdRow = listOf("c", "+/-", "%", "/")
+    val fourthRow = listOf("c", "+/-", "%", "/")
+    val fifthRow = listOf("c", "+/-", "%", "/")
+    Column(
+        verticalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+    ) {
+        InputRows(firstRow)
+        InputRows(secondRow)
+        InputRows(thirdRow)
+        InputRows(fourthRow)
+        InputRows(fifthRow)
+    }
+}
+
+@Composable
+fun InputRows(rowItems: List<String>) {
+    LazyRow(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier.fillMaxWidth(),
+        content = {
+            itemsIndexed(rowItems) { _, item ->
+                CalculatorInputItem(text = item) {
+                    //Todo ->
+                }
+            }
+        })
 }
 
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_NO)
