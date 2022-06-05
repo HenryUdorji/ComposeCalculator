@@ -16,7 +16,7 @@ data class CalculatorInputItemData(
 
 val firstRow = listOf(
     CalculatorInputItemData("c"),
-    CalculatorInputItemData("+/-"),
+    CalculatorInputItemData("( )"),
     CalculatorInputItemData("%"),
     CalculatorInputItemData("/")
 )
